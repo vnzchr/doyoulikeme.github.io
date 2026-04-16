@@ -101,13 +101,13 @@ button:focus {
   position: fixed;
   bottom: 24px;
   left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
+  transform: translateX(-50%);
 
   display: flex;
   align-items: center;
   gap: 10px;
 
-  padding: 40px 18px;
+  padding: 20px 18px;
 
   background: #fffdf7;
   color: #111;
