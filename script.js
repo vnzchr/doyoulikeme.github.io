@@ -22,25 +22,27 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.top = randomY + "px";
 });
 
-const bgm = document.getElementById("bgm");
-const btn = document.getElementById("musicBtn");
-const icon = document.getElementById("icon");
-const label = document.getElementById("label");
+document.addEventListener("DOMContentLoaded", () => {
+  const bgm = document.getElementById("bgm");
+  const btn = document.getElementById("musicBtn");
+  const icon = document.getElementById("icon");
+  const label = document.getElementById("label");
 
-btn.addEventListener("click", async () => {
-  if (bgm.paused) {
-    try {
-      await bgm.play(); // important for modern browsers
-      btn.classList.add("playing");
-      icon.textContent = "⏸";
-      label.textContent = "Pause Music";
-    } catch (err) {
-      console.log("Playback blocked:", err);
+  btn.addEventListener("click", async () => {
+    if (bgm.paused) {
+      try {
+        await bgm.play();
+        btn.classList.add("playing");
+        icon.textContent = "⏸";
+        label.textContent = "Pause Music";
+      } catch (err) {
+        console.log("Play failed:", err);
+      }
+    } else {
+      bgm.pause();
+      btn.classList.remove("playing");
+      icon.textContent = "▶";
+      label.textContent = "Play Music";
     }
-  } else {
-    bgm.pause();
-    btn.classList.remove("playing");
-    icon.textContent = "▶";
-    label.textContent = "Play Music";
-  }
+  });
 });
