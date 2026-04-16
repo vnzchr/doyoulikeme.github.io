@@ -27,12 +27,16 @@ const btn = document.getElementById("musicBtn");
 const icon = document.getElementById("icon");
 const label = document.getElementById("label");
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", async () => {
   if (bgm.paused) {
-    bgm.play();
-    btn.classList.add("playing");
-    icon.textContent = "⏸";
-    label.textContent = "Pause Music";
+    try {
+      await bgm.play(); // important for modern browsers
+      btn.classList.add("playing");
+      icon.textContent = "⏸";
+      label.textContent = "Pause Music";
+    } catch (err) {
+      console.log("Playback blocked:", err);
+    }
   } else {
     bgm.pause();
     btn.classList.remove("playing");
